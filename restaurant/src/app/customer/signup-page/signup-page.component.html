@@ -1,0 +1,83 @@
+<div class="signupFrm"><!--mehod name-->
+  <form class="form"   method="post" (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+    <h4 class=>Enter your details</h4>
+
+    <div class="inputContainer">
+      <label for="" class="label">First Name</label><br>
+      <input type="text" class="input" placeholder="First Name" name="firstname" [(ngModel)]="firstname" required>
+      
+    </div>
+
+    <div class="inputContainer">
+      <label for="" class="label">Last Name</label><br>
+      <input type="text" class="input" placeholder="Last Name" name="lastname" [(ngModel)]="lastname" required>
+      
+    </div>
+
+    <div class="inputContainer">
+      <label for="" class="label">Password</label><br>
+      <input type="password" class="input" placeholder="Password" name="password" [(ngModel)]="password" required>
+     
+    </div>
+
+    <div class="inputContainer">
+      <label for="" class="label">Confirm Password</label><br>
+      <input type="password" class="input" placeholder="Re type your password" name="retype" [(ngModel)]="retype" required>
+      
+    </div>
+
+    
+    <div class="inputContainer">
+      <label for="" class="label">Enter yor email</label><br>
+      <input type="email" class="input" placeholder="email" name="email" [(ngModel)]="email" required>
+    
+    </div>
+
+    <div class="inputContainer">
+      <label for="" class="label">Enter yor Phone Number</label><br>
+      <input type="tel" class="input" placeholder="Phone Number" name="phone" [(ngModel)]="phone" required>
+    
+    </div>
+
+    <h4>Contact Information</h4>
+
+    <div class="inputContainer">
+      <label for="" class="label">Door Number</label><br>
+      <input type="text" class="input" placeholder="Door Number" name="doorNo" [(ngModel)]="doorNo" required>
+    
+    </div>
+
+    <div class="inputContainer">
+      <label for="" class="label">Sreet Name</label><br>
+      <input type="text" class="input" placeholder="Sreet Name" name="streetName" [(ngModel)]="streetName" required>
+    
+    </div>
+
+    <!--<div class="inputContainer">
+      <label for="" class="label">Area Name</label><br>
+      <input type="text" class="input" placeholder="Arean Name">
+    
+    </div>-->
+   <div class = "inputContainer">
+    <label for="area">Area:</label>
+  <select id="area" name="area" [(ngModel)]="selectedAreaId" >
+    <option *ngFor="let area of areas" [value]="area.id">{{ area.name }}</option>
+  </select>
+   </div>
+   <div class=" inputContainer">
+  <label for="district">District:</label>
+  <select id="district" name="district" [(ngModel)]="selectedDistrictId" >
+    <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
+  </select>
+   </div>
+  
+   <label for="state">State:</label>
+   <select id="state" name="state" [(ngModel)]="selectedStateId" >
+     <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+   </select>
+
+    <input type="submit" class="submitBtn" value="Sign up">
+
+ 
+      </form>
+</div>
