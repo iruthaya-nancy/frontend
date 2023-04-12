@@ -11,6 +11,7 @@ import { District } from '../customerServices/district.model';
 import { DistrictserviceService } from '../customerServices/districtservice.service';
 import { State } from '../customerServices/state.model';
 import { StateserviceService } from '../customerServices/stateservice.service';
+//import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -25,36 +26,37 @@ import { StateserviceService } from '../customerServices/stateservice.service';
 export class SignupPageComponent implements OnInit {
 
   
-  firstname:String;
-  lastname: string;
+  firstName:String;
+  lastName: string;
   email: string;
   password: string;
   retype:String;
-  phone:String;
+  phoneNumber:String;
   doorNo:String;
-  streetName:String;
+  street:String;
   areas!: Area[];
-  selectedAreaId: number;
+  area: number;
   districts!: District[];
-  selectedDistrictId : number;
+  district : number;
   states!:State[];
-  selectedStateId :number;
+  state :number;
 
   
 
   // public signUpForm !: FormGroup
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router,private signupService: SignupserviceService,private areaService:AreaserviceService,private distrctService:DistrictserviceService,private stateService :StateserviceService ) {
-    this.firstname = '';
-    this.lastname = '';
-    this.email = '';
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router,private signupService: SignupserviceService,private areaService:AreaserviceService,private distrctService:DistrictserviceService,private stateService :StateserviceService) {
+    this.firstName = '';
+    this.lastName = '';
     this.password = '';
+    this.email = '';
+
     this.retype = '';
-    this.phone = '';
+    this.phoneNumber = '';
     this.doorNo = '';
-    this.streetName = '';
-    this.selectedAreaId = 0;
-    this.selectedDistrictId = 0;
-    this.selectedStateId = 0;
+    this.street = '';
+    this.area = 0;
+    this.district = 0;
+    this.state = 0;
 
    }
 
@@ -88,8 +90,9 @@ export class SignupPageComponent implements OnInit {
     //console.log('Selected area ID:', this.selectedAreaId);
     // ...
     //const data = { firstname: this.firstname, lastname:this.lastname, email: this.email, password: this.password,phone: this.phone,doorNo:this.doorNo,streetName:this.streetName ,selectedAreaId:this.selectedAreaId,selectedDistrictId:this.selectedDistrictId,selectedStateId:this.selectedStateId};
-    this.signupService.signUp(this.firstname,this.lastname, this.email,  this.password,this.phone,this.doorNo,this.streetName ,this.selectedAreaId,this.selectedDistrictId,this.selectedStateId).subscribe(response => {
+    this.signupService.signUp(this.firstName,this.lastName,  this.password,this.email, this.phoneNumber,this.doorNo,this.street ,this.area,this.district,this.state).subscribe(response => {
       console.log(response);
+      //this.toastr.success('Form submitted successfully!');
     });
   }
 }

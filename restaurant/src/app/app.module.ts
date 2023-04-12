@@ -11,7 +11,7 @@ import { LoginPageComponent } from './shared-component/login-page/login-page.com
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './customer/menu/menu.component';
-//import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+// import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -30,8 +30,7 @@ import { MenuComponent } from './customer/menu/menu.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    //ToastrModule.forRoot({ positionClass: 'inline' }), 
-    //ToastContainerModule,
+    // ToastrModule.forRoot({ positionClass: 'inline' }), 
     BrowserAnimationsModule,
   
   ],

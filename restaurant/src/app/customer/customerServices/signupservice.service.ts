@@ -11,15 +11,15 @@ export class SignupserviceService {
 
   constructor(private http:HttpClient) { }
 
-  signUp(firstname:String,lastname:String,password:String,email:String,doorNo:String,phone:String,streetName:String,area:number,district:number,state:number){
+  signUp(firstName:String,lastName:String,password:String,email:String,phoneNumber:String,doorNo:String,street:String,area:number,district:number,state:number){
     const userdata = {
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
+      firstname: firstName,
+      lastname: lastName,
       password: password,
+      email: email,
+      phoneNumber:phoneNumber,
       doorNo:doorNo,
-      streetName:streetName,
-      phoneNumber:phone,
+      street:street,
       area:area,
       district:district,
       state:state
