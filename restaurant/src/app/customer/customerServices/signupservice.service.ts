@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import{Observable} from 'rxjs';
+import { Area } from './area.model';
+import { District } from './district.model';
+import { State } from './state.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +13,35 @@ export class SignupserviceService {
 
   private apiUrl = 'http://localhost:8080/customer/signup';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
   signUp(firstName:String,lastName:String,password:String,email:String,phoneNumber:String,doorNo:String,street:String,area:number,district:number,state:number){
     const userdata = {
-      firstname: firstName,
-      lastname: lastName,
+      firstName: firstName,
+      lastName: lastName,
       password: password,
       email: email,
       phoneNumber:phoneNumber,
       doorNo:doorNo,
       street:street,
-      area:area,
-      district:district,
-      state:state
+      area:{id:area},
+      district:{id:district},
+      state:{id:state}
     };
-    return this.http.post(this.apiUrl, userdata);
+    this.http.post<any>(this.apiUrl, userdata).subscribe(data =>{
+      console.log(data);
+      localStorage.setItem('id',data.data);
+      this.router.navigate(["menu"])
+
+    },(err:HttpErrorResponse)=>{
+      if(err.status === 404){
+        window.alert(err.message)
+      }
+
+      else if(err.status===500){
+        window.alert('Sign up failed please contact the administrator')
+      }
+    })
   }
 
   // signUp(data: any): Observable<any> {

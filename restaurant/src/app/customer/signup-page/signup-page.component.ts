@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +25,7 @@ import { StateserviceService } from '../customerServices/stateservice.service';
 })
 export class SignupPageComponent implements OnInit {
 
+  allFieldsFilled = false;
   
   firstName:String;
   lastName: string;
@@ -41,6 +42,7 @@ export class SignupPageComponent implements OnInit {
   states!:State[];
   state :number;
 
+  validPassword!:Boolean
   
 
   // public signUpForm !: FormGroup
@@ -64,11 +66,13 @@ export class SignupPageComponent implements OnInit {
   // ngOnInit(): void {
   //   this.signUpForm = this.formBuilder.group({
   //     email: ['',Validators.required],
-  //     password: ['', Validators.required]
+  //     
   // })
 
   ngOnInit() {
     // Retrieve the list of areas from the server
+ 
+  
     this.areaService.getAreas().subscribe(
       areas => {this.areas = areas.data; console.log(areas)},
       error => console.log(error)
@@ -83,19 +87,47 @@ export class SignupPageComponent implements OnInit {
       states=> {this.states = states.data;},
       error => console.log(error)
     );
+
   }
+
+  updateAllFieldsFilled() {
+    // check if all fields have a value
+    if((this.firstName && this.lastName && this.email && this.password && this.doorNo && this.phoneNumber && this.street && this.area && this.district && this.state)){
+         this.allFieldsFilled = true;
+    }
+    else{
+      this.allFieldsFilled = false;
+    }
+  }
+
+
+  // public isPasswordValid(password: string): boolean {
+  //   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+  //   return regex.test(password);
+  // }
+
+
 
   onSubmit() {
     // Submit the customer area details to the server
     //console.log('Selected area ID:', this.selectedAreaId);
     // ...
     //const data = { firstname: this.firstname, lastname:this.lastname, email: this.email, password: this.password,phone: this.phone,doorNo:this.doorNo,streetName:this.streetName ,selectedAreaId:this.selectedAreaId,selectedDistrictId:this.selectedDistrictId,selectedStateId:this.selectedStateId};
-    this.signupService.signUp(this.firstName,this.lastName,  this.password,this.email, this.phoneNumber,this.doorNo,this.street ,this.area,this.district,this.state).subscribe(response => {
-      console.log(response);
+    if(this.password === this.retype){
+    this.signupService.signUp(this.firstName,this.lastName,  this.password,this.email, this.phoneNumber,this.doorNo,this.street ,this.area,this.district,this.state)
+     // window.localStorage.setItem('customerId',id.toString());
+    }
+    else{
+       window.alert('pasword did not match')
+    }
+      
+     
       //this.toastr.success('Form submitted successfully!');
-    });
+
   }
 }
+
+
 
 // doSignIn(){
 //   if(this.signUpForm.valid){this.http.post<any>("http://localhost:8080/customer/signup",this.signUpForm.value)

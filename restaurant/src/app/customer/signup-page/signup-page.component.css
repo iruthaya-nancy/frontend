@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 /* Get rid of all default margins/paddings. Set typeface */
-body {
+/*body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   background-color: white;
   font-family: "lato", sans-serif;
-}
+}*/
 
 
 .signupFrm {
@@ -25,19 +25,19 @@ body {
     box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
   }
   
-  .title {
+  /* .title {
     font-size: 20px;
     margin-bottom: 50px;
-  }
+  } */
 
   .inputContainer {
     position: relative;
     height: 45px;
     width: 90%;
     margin-bottom: 17px;
-  }
-
-  .input {
+  } 
+/* 
+   .input {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -50,25 +50,25 @@ body {
     outline: none;
     background: none;
     z-index: 1;
-  }
+  }  */
   
-  /* Hide the placeholder texts (a) */
+  /* Hide the placeholder texts (a) 
   
   ::placeholder {
     color: transparent;
   }
 
-  .label {
+  /* .label {
     position: absolute;
     top: 15px;
     left: 15px;
     padding: 0 4px;
-    background-color: white;
+    background-color: black;
     color: #DADCE0;
     font-size: 16px;
     transition: 0.5s;
     z-index: 0;
-  }
+  } */
 
   .submitBtn {
     display: block;

@@ -131,3 +131,12 @@
   border: 2px solid purple;
 }
 
+.alert-danger {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #f2dede;
+  border-radius: 4px;
+  color: #a94442;
+  background-color: #f2dede;
+}
+

@@ -11,7 +11,17 @@ import { LoginPageComponent } from './shared-component/login-page/login-page.com
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './customer/menu/menu.component';
-// import { ToastrModule } from 'ngx-toastr';
+import { OrderComponent } from './customer/order/order.component';
+import { ViewSoldFoodsComponent } from './admin/view-sold-foods/view-sold-foods.component';
+import { FoodsoldComponent } from './admin/foodsold/foodsold.component';
+import { DatePipe } from '@angular/common';
+import { LoginComponent } from './admin/login/login.component';
+import { AddFoodComponent } from './admin/add-food/add-food.component';
+import { UpdateCostComponent } from './admin/update-cost/update-cost.component';
+import { EmailComponent } from './customer/email/email.component';
+
+
+
 
 
 @NgModule({
@@ -22,6 +32,16 @@ import { MenuComponent } from './customer/menu/menu.component';
     LoginPageComponent ,
     SignupPageComponent,
     MenuComponent,
+    OrderComponent,
+    ViewSoldFoodsComponent,
+    FoodsoldComponent,
+    LoginComponent,
+    AddFoodComponent,
+    UpdateCostComponent,
+    EmailComponent,
+    
+  
+    
   
      ],
   imports: [
@@ -30,11 +50,10 @@ import { MenuComponent } from './customer/menu/menu.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    // ToastrModule.forRoot({ positionClass: 'inline' }), 
     BrowserAnimationsModule,
   
   ],
-  providers: [],
+  providers: [DatePipe],
 
 bootstrap: [AppComponent]
 })
