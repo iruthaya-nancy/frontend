@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PaymentmodeServiceService } from '../customerServices/paymentmode-service.service';
@@ -9,6 +9,8 @@ import { order } from '../customerServices/Order.model';
 import { DeleteOrderService } from '../customerServices/delete-order.service';
 import { FoodItemService } from '../customerServices/food-item.service';
 import { menuItem } from '../customerServices/menu.model';
+import { ToasterService } from '../customerServices/toaster.service';
+
 /*
   to confirm order
   1.menuid from menu component its in local storage
@@ -31,9 +33,10 @@ export class OrderComponent implements OnInit {
   paymentid !:number;
   disableButton:boolean =  true
   item!:menuItem[];
+  showCancelToast: boolean = false; // declare the property
  
 
-  constructor(private http:HttpClient,private router:Router,private paymentmodeservice:PaymentmodeServiceService,private orderService:OrderServiceService,private deleteOrderService:DeleteOrderService,private getfoodItem:FoodItemService) {
+  constructor(private http:HttpClient,private toastservice:ToasterService,private router:Router,private paymentmodeservice:PaymentmodeServiceService,private orderService:OrderServiceService,private deleteOrderService:DeleteOrderService,private getfoodItem:FoodItemService) {
       //this.paymentid = 0;
    }
 
@@ -61,10 +64,35 @@ export class OrderComponent implements OnInit {
   // console.log(form.value.quantity);
   setTimeout(() => {
     this.disableButton = true;
-  }, 30000); // disable button after 5 seconds
+  }, 35000); 
   
 
-     this.orderService.confirmOrder();
+  this.orderService.confirmOrder();
+  const Btn = document.getElementById('confirm');
+  if (Btn) {
+    window.alert("Order Confirmed")
+  }
+
+  document.getElementById('confirm')?.addEventListener("click", function(){
+    var timeleft = 15;
+
+    var downloadTimer = setInterval(function function1()
+    {
+    const count = document.getElementById("countdown");
+    if(count){
+      count.innerHTML = timeleft + "&nbsp"+"seconds remaining to cancel the order";
+    }
+    timeleft -= 1;
+    if(timeleft <= 0){
+        clearInterval(downloadTimer);
+        const c = document.getElementById("countdown");
+        if(c){
+          c.innerHTML = "Time is up!"
+        }
+    }
+    }, 1000);
+
+    });
   
     //console.log(localStorage.getItem('paymentid'));
     //console.log(data.Quantity);
@@ -77,12 +105,15 @@ export class OrderComponent implements OnInit {
 
 onClick(buttonType:any){
   if(buttonType === "delete"){
+      window.alert('Order Cancelled successfully')
       this.deleteOrderService.deleteOrder();
   }
   else {
     
       this.router.navigate(["login"])
       window.localStorage.removeItem("id");
+      window.localStorage.removeItem("menu");
+      window.localStorage.removeItem("email");
       
     
   }
@@ -92,7 +123,11 @@ onClick(buttonType:any){
 
 deleteFood(id:any){
 
-
+  
+  const liveToastBtn = document.getElementById('liveToastBtn');
+  if (liveToastBtn) {
+    window.alert("Food cancelled successfully")
+  }
     const food = window.localStorage.getItem('menu');
     if(food!=null){
        var menu = JSON.parse(food);
@@ -102,6 +137,21 @@ deleteFood(id:any){
     window.localStorage.setItem('menu', JSON.stringify(menu));
     this.item = this.item.filter(food => food.id != id)
     console.log(this.item);
+
+   
+    // document.getElementById("liveToastBtn")!.onclick = function() {
+    //   var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    //   var toastList = toastElList.map(function(toastEl) {
+    //   // Creates an array of toasts (it only initializes them)
+    //     return new bootstrap.Toast(toastEl) // No need for options; use the default options
+    //   });
 }
+
+
+
+// showSuccess() {
+//   console.log('called')
+//   this.toastservice.show('Foods Cancelled Succesfully', { classname: 'bg-success text-light', delay: 10000 });
+// }
 
 }

@@ -53,3 +53,9 @@ button:hover::after{
   transform: translateY(5px);
   
 } */
+/* 
+{
+  animation: true,
+  autohide: true,
+  delay: 500
+} */

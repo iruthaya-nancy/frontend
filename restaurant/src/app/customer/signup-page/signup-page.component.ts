@@ -95,7 +95,8 @@ export class SignupPageComponent implements OnInit {
     if((this.firstName && this.lastName && this.email && this.password && this.doorNo && this.phoneNumber && this.street && this.area && this.district && this.state)){
          this.allFieldsFilled = true;
     }
-    else{
+    else
+    {
       this.allFieldsFilled = false;
     }
   }
@@ -113,7 +114,8 @@ export class SignupPageComponent implements OnInit {
     //console.log('Selected area ID:', this.selectedAreaId);
     // ...
     //const data = { firstname: this.firstname, lastname:this.lastname, email: this.email, password: this.password,phone: this.phone,doorNo:this.doorNo,streetName:this.streetName ,selectedAreaId:this.selectedAreaId,selectedDistrictId:this.selectedDistrictId,selectedStateId:this.selectedStateId};
-    if(this.password === this.retype){
+    if(this.password === this.retype)
+    {
     this.signupService.signUp(this.firstName,this.lastName,  this.password,this.email, this.phoneNumber,this.doorNo,this.street ,this.area,this.district,this.state)
      // window.localStorage.setItem('customerId',id.toString());
     }

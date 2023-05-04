@@ -7,7 +7,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col-md-6">
                         <div class="form-wrap bg-white">
-                            <h4 class="btm-sep pb-3 mb-5">Login</h4>
+                            <h4 class="btm-sep pb-3 mb-5">Welcome to our restaurant.<br>Login to taste our appetizing cuisine</h4>
                             <form class="form" [formGroup]="loginForm" method="post" (ngSubmit)="doLogin()">
                                 <div class="row">
                                     <div class="col-12">
@@ -27,11 +27,11 @@
                                     </div>
                                     <div class="col-12 text-lg-right">
                                       <br>
-                                        <a href="#link" class="c-black">Forgot password ?</a>
+                                        <!-- <a href="#link" class="c-black">Forgot password ?</a> -->
                                     </div>
                                     <div class="col-12 mt-30">
                                       <br>
-                                        <button type="submit" id="submit" [disabled]="!loginForm.valid" class="btn btn-lg btn-custom btn-dark btn-block">Sign In
+                                        <button type="submit" id="submit" [disabled]="!loginForm.valid" class="btn btn-lg btn-custom btn-dark btn-block">Log In
                                         </button>
                                     </div>
                                     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false">
@@ -54,7 +54,7 @@
                         <div class="content text-center">
                             <div class="border-bottom pb-5 mb-5">
                                 <h3 class="c-black">First time here?</h3>
-                                <a href="/signUp" class="btn btn-custom">Sign up</a>
+                                <a href="/signUp" class="btn btn-outline-dark">Sign up</a>
                             </div>
                         </div>
                         <div class="text-center">

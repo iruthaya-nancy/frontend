@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 export class UpdateCostService {
 
 
-   id = window.localStorage.getItem('id');
+   
   constructor(private http:HttpClient,private router:Router) { }
 
   updatecost(price:number){
 
-   
-      return this.http.patch(`http://localhost:8080/menu/${this.id}?price=${price}`,{}).subscribe(data=>{
+      const id = window.localStorage.getItem('id');
+      return this.http.patch(`http://localhost:8080/menu/${id}?price=${price}`,{}).subscribe(data=>{
         this.router.navigate(["addfood"])
       });
       

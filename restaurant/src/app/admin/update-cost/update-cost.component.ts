@@ -28,7 +28,7 @@ export class UpdateCostComponent implements OnInit {
 
   onSubmit(form:NgForm){
     const data = form.value;
-    var id = data.id;
+    var id = data.food;
     // var price = data.price;
     window.localStorage.setItem('id',id);
     // window.localStorage.setItem('price',price);
